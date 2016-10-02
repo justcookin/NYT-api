@@ -26,20 +26,20 @@ function loadData() {
     $body.append('<img class="bgimg" src="'+ streetViewUrl + '">');
 
     // load nytimes
-        var nyTimesUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?=q" + cityStr + '&sort=newest&api-key=04af26cdd76f4b8da348f53553eadcb3'
+        var nyTimesUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + cityStr + '&sort=newest&api-key=04af26cdd76f4b8da348f53553eadcb3'
 
 
         $.getJSON(nyTimesUrl, function(data){
           $nytHeaderElem.text("New York Times articles about " + cityStr);
-
+	        
             articles = data.response.docs;
-            for(var i = 0; i > articles.length; i++)
+            for(var i = 0; i < articles.length; i++)
             {
               var article = articles[i]
-              $nytElem.append('<li class="article">'+ '<a href="'+ article.web_url +'">' +artile.headline.main+'</a>' + '<p>'
-               + article.snippet + '</p>' + '</li>');
+              $nytElem.append('<li class="article">'+ '<a href="'+ article.web_url +'">' +article.headline.main+'</a>' + '<p>'
+                              + article.snippet + '</p>' + '</li>');
+	            console.log(article)
             };
-            console.log(articles)
         })
 
 
